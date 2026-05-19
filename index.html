@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hash Generator — MD5 · SHA-1 · SHA-256 · SHA-512</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">#</span>
+      <span class="logo-text">HashGen</span>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-btn active" data-tab="generate">Générer</button>
+      <button class="nav-btn" data-tab="compare">Comparer</button>
+      <button class="nav-btn" data-tab="info">Algorithmes</button>
+    </nav>
+    <a class="github-link" href="https://github.com/Maxime288/Hash-Generator" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+  </header>
+
+  <main>
+
+    <!-- TAB: GENERATE -->
+    <section id="tab-generate" class="tab active">
+      <div class="section-header">
+        <h1>Générateur de hash</h1>
+        <p>Entrez un texte pour obtenir instantanément ses empreintes cryptographiques.</p>
+      </div>
+
+      <div class="input-card">
+        <div class="input-toolbar">
+          <label for="input-text">Texte à hasher</label>
+          <div class="toolbar-actions">
+            <button id="btn-paste" class="tool-btn" title="Coller">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              Coller
+            </button>
+            <button id="btn-clear" class="tool-btn" title="Effacer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+              Effacer
+            </button>
+          </div>
+        </div>
+        <textarea id="input-text" placeholder="Tapez ou collez votre texte ici..." rows="4" spellcheck="false"></textarea>
+        <div class="input-meta">
+          <span id="char-count">0 caractère</span>
+          <span id="byte-count">0 octet</span>
+        </div>
+      </div>
+
+      <div class="results-grid" id="results">
+        <div class="hash-card" data-algo="MD5">
+          <div class="hash-card-header">
+            <div class="algo-info">
+              <span class="algo-tag tag-md5">MD5</span>
+              <span class="algo-bits">128 bits</span>
+              <span class="algo-status status-broken">Obsolète</span>
+            </div>
+            <button class="copy-btn" data-target="hash-md5">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copier
+            </button>
+          </div>
+          <div class="hash-value" id="hash-md5">—</div>
+        </div>
+
+        <div class="hash-card" data-algo="SHA-1">
+          <div class="hash-card-header">
+            <div class="algo-info">
+              <span class="algo-tag tag-sha1">SHA-1</span>
+              <span class="algo-bits">160 bits</span>
+              <span class="algo-status status-deprecated">Déprécié</span>
+            </div>
+            <button class="copy-btn" data-target="hash-sha1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copier
+            </button>
+          </div>
+          <div class="hash-value" id="hash-sha1">—</div>
+        </div>
+
+        <div class="hash-card featured" data-algo="SHA-256">
+          <div class="hash-card-header">
+            <div class="algo-info">
+              <span class="algo-tag tag-sha256">SHA-256</span>
+              <span class="algo-bits">256 bits</span>
+              <span class="algo-status status-recommended">Recommandé</span>
+            </div>
+            <button class="copy-btn" data-target="hash-sha256">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copier
+            </button>
+          </div>
+          <div class="hash-value" id="hash-sha256">—</div>
+        </div>
+
+        <div class="hash-card" data-algo="SHA-512">
+          <div class="hash-card-header">
+            <div class="algo-info">
+              <span class="algo-tag tag-sha512">SHA-512</span>
+              <span class="algo-bits">512 bits</span>
+              <span class="algo-status status-secure">Haute sécurité</span>
+            </div>
+            <button class="copy-btn" data-target="hash-sha512">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copier
+            </button>
+          </div>
+          <div class="hash-value" id="hash-sha512">—</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: COMPARE -->
+    <section id="tab-compare" class="tab">
+      <div class="section-header">
+        <h1>Comparer un hash</h1>
+        <p>Vérifiez qu'un texte correspond bien à une empreinte cryptographique connue.</p>
+      </div>
+
+      <div class="compare-layout">
+        <div class="input-card">
+          <label for="cmp-text">Texte original</label>
+          <textarea id="cmp-text" placeholder="Entrez le texte source..." rows="3" spellcheck="false"></textarea>
+        </div>
+
+        <div class="input-card">
+          <label for="cmp-hash">Hash à vérifier</label>
+          <input id="cmp-hash" type="text" placeholder="Collez le hash ici..." spellcheck="false" />
+        </div>
+
+        <div class="input-card">
+          <label>Algorithme</label>
+          <div class="algo-selector">
+            <button class="algo-btn active" data-algo="MD5">MD5</button>
+            <button class="algo-btn" data-algo="SHA-1">SHA-1</button>
+            <button class="algo-btn" data-algo="SHA-256">SHA-256</button>
+            <button class="algo-btn" data-algo="SHA-512">SHA-512</button>
+          </div>
+        </div>
+
+        <div id="compare-result" class="compare-result hidden">
+          <div class="result-computed">
+            <span class="result-label">Hash calculé</span>
+            <code id="computed-hash"></code>
+          </div>
+          <div class="result-verdict" id="verdict"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: INFO -->
+    <section id="tab-info" class="tab">
+      <div class="section-header">
+        <h1>Les algorithmes</h1>
+        <p>Comprendre les différences entre les fonctions de hachage cryptographique.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-top">
+            <span class="algo-tag tag-md5">MD5</span>
+            <span class="info-year">1992</span>
+          </div>
+          <h3>Message Digest 5</h3>
+          <p>Conçu par Ron Rivest, MD5 produit un hash de <strong>128 bits</strong> (32 caractères hexadécimaux). Il a été largement utilisé pour la vérification d'intégrité de fichiers.</p>
+          <p>Aujourd'hui considéré comme <strong>cryptographiquement cassé</strong> : des collisions peuvent être générées en quelques secondes sur un ordinateur ordinaire.</p>
+          <div class="info-tags">
+            <span class="info-tag danger">Collisions connues</span>
+            <span class="info-tag danger">Ne pas utiliser</span>
+          </div>
+          <div class="info-uses">
+            <span class="use-label">Encore acceptable pour :</span>
+            checksums non-critiques, identifiants de cache
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-top">
+            <span class="algo-tag tag-sha1">SHA-1</span>
+            <span class="info-year">1995</span>
+          </div>
+          <h3>Secure Hash Algorithm 1</h3>
+          <p>Conçu par la NSA, SHA-1 produit un hash de <strong>160 bits</strong> (40 caractères hexadécimaux). Il a longtemps été la référence pour les signatures numériques.</p>
+          <p>Officiellement <strong>déprécié depuis 2017</strong> suite à l'attaque SHAttered de Google, qui a démontré la première collision pratique.</p>
+          <div class="info-tags">
+            <span class="info-tag warning">Déprécié</span>
+            <span class="info-tag warning">Collision démontrée</span>
+          </div>
+          <div class="info-uses">
+            <span class="use-label">Retiré de :</span>
+            navigateurs, certificats SSL/TLS, Git (en migration)
+          </div>
+        </div>
+
+        <div class="info-card featured-card">
+          <div class="info-card-top">
+            <span class="algo-tag tag-sha256">SHA-256</span>
+            <span class="info-year">2001</span>
+          </div>
+          <h3>Secure Hash Algorithm 256</h3>
+          <p>Membre de la famille SHA-2, SHA-256 produit un hash de <strong>256 bits</strong> (64 caractères hexadécimaux). C'est le standard actuel de référence en cryptographie.</p>
+          <p>Aucune collision connue. Résistant aux attaques actuelles. Utilisé partout dans les systèmes modernes.</p>
+          <div class="info-tags">
+            <span class="info-tag success">Standard recommandé</span>
+            <span class="info-tag success">Aucune collision</span>
+          </div>
+          <div class="info-uses">
+            <span class="use-label">Utilisé dans :</span>
+            HTTPS, Bitcoin, JWT, signatures numériques, Git
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-top">
+            <span class="algo-tag tag-sha512">SHA-512</span>
+            <span class="info-year">2001</span>
+          </div>
+          <h3>Secure Hash Algorithm 512</h3>
+          <p>Aussi membre de SHA-2, SHA-512 produit un hash de <strong>512 bits</strong> (128 caractères hexadécimaux). Plus lent que SHA-256 mais avec une marge de sécurité plus grande.</p>
+          <p>Particulièrement performant sur les processeurs <strong>64 bits</strong>. Recommandé pour les applications nécessitant une sécurité maximale.</p>
+          <div class="info-tags">
+            <span class="info-tag secure">Haute sécurité</span>
+            <span class="info-tag secure">512 bits</span>
+          </div>
+          <div class="info-uses">
+            <span class="use-label">Utilisé pour :</span>
+            signatures de fichiers volumineux, authentification serveur
+          </div>
+        </div>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Algorithme</th>
+              <th>Taille du hash</th>
+              <th>Vitesse</th>
+              <th>Sécurité</th>
+              <th>Usage recommandé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="algo-tag tag-md5">MD5</span></td>
+              <td>128 bits / 32 chars</td>
+              <td>Très rapide</td>
+              <td><span class="info-tag danger">Cassé</span></td>
+              <td>Cache uniquement</td>
+            </tr>
+            <tr>
+              <td><span class="algo-tag tag-sha1">SHA-1</span></td>
+              <td>160 bits / 40 chars</td>
+              <td>Rapide</td>
+              <td><span class="info-tag warning">Déprécié</span></td>
+              <td>Aucun (migrer)</td>
+            </tr>
+            <tr class="featured-row">
+              <td><span class="algo-tag tag-sha256">SHA-256</span></td>
+              <td>256 bits / 64 chars</td>
+              <td>Rapide</td>
+              <td><span class="info-tag success">Sûr</span></td>
+              <td>Tout usage général</td>
+            </tr>
+            <tr>
+              <td><span class="algo-tag tag-sha512">SHA-512</span></td>
+              <td>512 bits / 128 chars</td>
+              <td>Modéré</td>
+              <td><span class="info-tag secure">Très sûr</span></td>
+              <td>Haute sécurité</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Tout le calcul s'effectue <strong>localement dans votre navigateur</strong> — aucune donnée n'est envoyée à un serveur.</p>
+    <p>Projet open source par <a href="https://github.com/Maxime288" target="_blank" rel="noopener">Maxime288</a></p>
+  </footer>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="hash.js"></script>
+</body>
+</html>
