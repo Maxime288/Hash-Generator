@@ -55,6 +55,7 @@ Hash-Generator/
 ├── index.html   ← Structure HTML et interface
 ├── style.css    ← Styles (thème sombre, responsive)
 ├── hash.js      ← Logique : MD5, SHA via Web Crypto API, UI
+├── Exemple d’utilisation Hash-Generator en local.pdf
 └── README.md
 ```
 
