@@ -7,7 +7,7 @@
 ![Privacy](https://img.shields.io/badge/Privacy-100%25%20local-green)
 
 > Générateur et comparateur de hash cryptographiques — MD5, SHA-1, SHA-256, SHA-512.
-> Entièrement côté client, sans serveur, sans envoi de données.
+> Entièrement côté client, sans serveur, sans envoi de données, en local.
 
 ---
 
