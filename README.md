@@ -38,8 +38,8 @@
 Aucune dépendance, aucun build nécessaire. Clonez et ouvrez directement dans un navigateur :
 
 ```bash
-git clone https://github.com/Maxime288/Hash-Generator.git
-cd Hash-Generator
+git clone https://github.com/Maxime288/LocalHash.git
+cd LocalHash
 # Ouvrir index.html dans votre navigateur
 open index.html        # macOS
 start index.html       # Windows
@@ -55,7 +55,7 @@ Hash-Generator/
 ├── index.html   ← Structure HTML et interface
 ├── style.css    ← Styles (thème sombre, responsive)
 ├── hash.js      ← Logique : MD5, SHA via Web Crypto API, UI
-├── Exemple d’utilisation Hash-Generator en local.pdf
+├── Exemple d’utilisation LocalHash en local.pdf
 └── README.md
 ```
 
